@@ -4,7 +4,7 @@
   "description": "Application layer heartbeat, more flexible and useful.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "DEBUG=heartbeat mocha test"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/EricPoker/heartbeat#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "debug": "^2.2.0",
     "mocha": "^2.4.5"
   }
 }
