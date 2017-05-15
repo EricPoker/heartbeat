@@ -17,14 +17,14 @@ class Heartbeat extends EventEmitter {
   constructor (opts) {
     super()
     opts = opts || {}
-    this.interval  = +opts.interval || 30
-    this.timeout = +opts.timeout || 2 
+    this.interval = +opts.interval || 30
+    this.timeout = +opts.timeout || 2
     this.intervalTimer = null
     this.timeoutCurrentCount = 0
     this.timeoutTimer = null
     this.init()
   }
-  
+
   init () {
     this.on('pong', () => {
       this.timeoutCurrentCount = 0
@@ -33,12 +33,11 @@ class Heartbeat extends EventEmitter {
       this.timeoutCurrentCount++
     })
   }
-  
+
   start () {
     this.intervalTimer = setInterval(() => {
-      //if timeout count more than setting, emit timeout and stop heartbeat
-      debug(`${this.timeoutCurrentCount} ping`)
-      if(this.timeoutCurrentCount > this.timeout) {
+      // if timeout count more than setting, emit timeout and stop heartbeat
+      if (this.timeoutCurrentCount > this.timeout) {
         this.emit('timeout')
         this.stop()
         return
@@ -46,18 +45,18 @@ class Heartbeat extends EventEmitter {
       this.emit('ping')
     }, this.interval * 1000)
   }
-  
+
   stop () {
     clearInterval(this.intervalTimer)
   }
-  
+
   restart () {
     this.stop()
-    this.start
+    this.start()
   }
-  
+
   changeInterval (interval) {
-    if(isNaN(interval) || interval < 1) {
+    if (isNaN(interval) || interval < 1) {
       throw new TypeError('interval is NaN or less than 1')
     }
     this.interval = interval
