@@ -1,6 +1,6 @@
 {
   "name": "heartbeat2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Application layer heartbeat, more flexible and useful.",
   "main": "index.js",
   "scripts": {
